@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { updateMetaDescription } from '../lib/utils';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Wrench, Phone, DollarSign, CheckCircle } from 'lucide-react';
 import Header from '../components/Header';
@@ -57,9 +58,26 @@ const AiPhoneAnsweringPlumbers: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "AI Phone Answering for Plumbers", "item": "https://boltcall.org/blog/ai-phone-answering-plumbers"}]});
     document.head.appendChild(bcScript);
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can an AI receptionist handle emergency plumbing calls?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Boltcall's AI detects emergency keywords (burst pipe, flooding, no hot water) and immediately routes those calls to your mobile number or on-call technician. Non-emergency calls are booked into your calendar automatically. You never miss a high-urgency job again." } },
+        { "@type": "Question", "name": "How does AI phone answering work for plumbing businesses?", "acceptedAnswer": { "@type": "Answer", "text": "When a customer calls, the AI answers in under 3 rings with your business greeting, qualifies the job (type of issue, location, urgency), checks your calendar for availability, and books the appointment — all without human involvement. You receive a summary text with the lead details." } },
+        { "@type": "Question", "name": "Will an AI receptionist book jobs directly from calls?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Boltcall integrates with Google Calendar and major scheduling tools to offer real-time availability and confirm bookings during the call. The customer gets an SMS confirmation, and the job appears in your schedule instantly." } },
+        { "@type": "Question", "name": "What happens when a plumbing customer calls at 2 AM?", "acceptedAnswer": { "@type": "Answer", "text": "The AI answers immediately, assesses urgency, and either books a next-available appointment or routes emergency calls to your on-call number. Your competitor's voicemail gets the customer instead — unless you have AI answering 24/7." } },
+        { "@type": "Question", "name": "How much does AI phone answering cost for plumbers?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall starts at $79/month — a fraction of the cost of a part-time answering service or receptionist. Given that a single captured emergency job can bring $500–$2,000 in revenue, the ROI is typically achieved within the first week of use." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       document.head.removeChild(script);
     };
   }, []);
@@ -581,6 +599,36 @@ const AiPhoneAnsweringPlumbers: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Can an AI receptionist handle emergency plumbing calls?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. Boltcall's AI detects emergency keywords (burst pipe, flooding, no hot water) and immediately routes those calls to your mobile number or on-call technician. Non-emergency calls are booked into your calendar automatically. You never miss a high-urgency job again.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does AI phone answering work for plumbing businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">When a customer calls, the AI answers in under 3 rings with your business greeting, qualifies the job (type of issue, location, urgency), checks your calendar for availability, and books the appointment — all without human involvement. You receive a summary text with the lead details.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Will an AI receptionist book jobs directly from calls?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. Boltcall integrates with Google Calendar and major scheduling tools to offer real-time availability and confirm bookings during the call. The customer gets an SMS confirmation, and the job appears in your schedule instantly.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What happens when a plumbing customer calls at 2 AM?</h3>
+              <p className="text-gray-600 leading-relaxed">The AI answers immediately, assesses urgency, and either books a next-available appointment or routes emergency calls to your on-call number. Without 24/7 AI answering, that call goes to a competitor's line.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How much does AI phone answering cost for plumbers?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall starts at $79/month — a fraction of the cost of a part-time answering service or receptionist. Given that a single captured emergency job can bring $500–$2,000 in revenue, the ROI is typically achieved within the first week of use. <Link to="/pricing" className="text-blue-600 hover:underline">View plans.</Link></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

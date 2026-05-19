@@ -77,9 +77,26 @@ const SpeedToLeadGuide: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Speed to Lead Guide", "item": "https://boltcall.org/speed-to-lead-guide"}]});
     document.head.appendChild(bcScript);
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is speed to lead and why does it matter for local businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Speed to lead is the time between when a prospect submits a lead (calls, fills out a form, or texts) and when your business first responds. Research from Harvard Business Review shows that responding within 1 minute increases conversion by 391% compared to responding after 5 minutes. For local service businesses, the first company to respond almost always wins the job." } },
+        { "@type": "Question", "name": "What is the ideal response time for a local business lead?", "acceptedAnswer": { "@type": "Answer", "text": "Under 60 seconds is the gold standard. Studies show that 78% of customers buy from the first company that responds. After 5 minutes, your odds of converting a lead drop by 80%. After 30 minutes, the lead has likely booked with a competitor. AI-powered tools like Boltcall respond instantly, 24/7." } },
+        { "@type": "Question", "name": "How can a local business improve its speed to lead?", "acceptedAnswer": { "@type": "Answer", "text": "The fastest way to improve speed to lead is to automate your first response. Use an AI receptionist to answer every call immediately, set up instant SMS follow-up for missed calls and form submissions, and integrate your scheduling directly with your calendar so leads can book without a callback." } },
+        { "@type": "Question", "name": "Does speed to lead matter for after-hours inquiries?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — especially for after-hours inquiries. Over 60% of business calls come in outside standard hours. If you respond to an after-hours lead within 5 minutes via automated text, you're still in contention when the customer wakes up and makes a decision. If you wait until the next morning, they've already booked elsewhere." } },
+        { "@type": "Question", "name": "How does Boltcall help with speed to lead?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall answers every inbound call in under 3 rings 24/7, sends instant text-backs to missed calls within 30 seconds, and follows up on web form submissions automatically. The result: zero leads wait more than a minute for a response, any time of day or night." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       document.head.removeChild(script);
       speakableScript.remove();
     };
@@ -717,6 +734,36 @@ const SpeedToLeadGuide: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is speed to lead and why does it matter for local businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">Speed to lead is the time between when a prospect submits a lead and when your business first responds. Research shows that responding within 1 minute increases conversion by 391% compared to responding after 5 minutes. For local service businesses, the first company to respond almost always wins the job.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the ideal response time for a local business lead?</h3>
+              <p className="text-gray-600 leading-relaxed">Under 60 seconds is the gold standard. Studies show that 78% of customers buy from the first company that responds. After 5 minutes, your odds of converting a lead drop by 80%. After 30 minutes, the lead has likely booked with a competitor.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How can a local business improve its speed to lead?</h3>
+              <p className="text-gray-600 leading-relaxed">The fastest way to improve speed to lead is to automate your first response. Use an AI receptionist to answer every call immediately, set up instant SMS follow-up for missed calls and form submissions, and integrate your scheduling directly with your calendar so leads can book without a callback.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Does speed to lead matter for after-hours inquiries?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes — especially for after-hours inquiries. Over 60% of business calls come in outside standard hours. If you respond to an after-hours lead within 5 minutes via automated text, you're still in contention when the customer makes a decision. If you wait until the next morning, they've already booked elsewhere.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does Boltcall help with speed to lead?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall answers every inbound call in under 3 rings 24/7, sends instant text-backs to missed calls within 30 seconds, and follows up on web form submissions automatically — zero leads wait more than a minute for a response, any time of day or night. <Link to="/pricing" className="text-blue-600 hover:underline">Start free.</Link></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

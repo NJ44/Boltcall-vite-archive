@@ -79,9 +79,26 @@ const BlogAIReceptionistComparison: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "Best AI Receptionist Tools", "item": "https://boltcall.org/blog/best-ai-receptionist-tools"}]});
     document.head.appendChild(bcScript);
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the best AI receptionist for small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall is the top-rated AI receptionist for local service businesses because it combines 24/7 call answering, instant SMS lead response, and appointment booking in one affordable platform starting at $79/month. It's built specifically for trades, dental, legal, and other local businesses." } },
+        { "@type": "Question", "name": "What features should I look for in an AI receptionist?", "acceptedAnswer": { "@type": "Answer", "text": "The most important features are: 24/7 call answering, natural conversation ability (not a phone tree), calendar integration for live booking, missed-call text-back, lead qualification, and CRM integration. Also look for transparent flat-rate pricing without per-minute fees." } },
+        { "@type": "Question", "name": "How do I choose the right AI receptionist tool?", "acceptedAnswer": { "@type": "Answer", "text": "Start by identifying your main pain point: missed calls, after-hours leads, or appointment scheduling. Then compare on price per feature, setup time, and whether the tool is built for your industry. Boltcall offers a free trial so you can test it with real calls before committing." } },
+        { "@type": "Question", "name": "Do AI receptionists work for all types of businesses?", "acceptedAnswer": { "@type": "Answer", "text": "AI receptionists work best for service businesses that receive high call volumes and book appointments: dental, medical, HVAC, plumbing, legal, real estate, and med spas. Businesses with highly complex or regulated conversations may still need human oversight for edge cases." } },
+        { "@type": "Question", "name": "How long does it take to set up an AI receptionist?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall can be live in 30 minutes. You provide your business name, services, hours, and FAQs — the AI is trained on your specifics. Calendar integration takes another 5–10 minutes. Most competitors take days or weeks." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       const scriptToRemove = document.getElementById('article-schema');
       if (scriptToRemove) scriptToRemove.remove();
       speakableScript.remove();
@@ -652,6 +669,35 @@ const BlogAIReceptionistComparison: React.FC = () => {
           </div>
         </motion.div>
       </article>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the best AI receptionist for small businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall is the top-rated AI receptionist for local service businesses because it combines 24/7 call answering, instant SMS lead response, and appointment booking in one affordable platform. It's built specifically for trades, dental, legal, and other local businesses.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What features should I look for in an AI receptionist?</h3>
+              <p className="text-gray-600 leading-relaxed">The most important features are: 24/7 call answering, natural conversation ability (not a phone tree), calendar integration for live booking, missed-call text-back, lead qualification, and CRM integration. Also look for transparent flat-rate pricing without per-minute fees.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How do I choose the right AI receptionist tool?</h3>
+              <p className="text-gray-600 leading-relaxed">Start by identifying your main pain point: missed calls, after-hours leads, or appointment scheduling. Then compare on price per feature, setup time, and whether the tool is built for your industry. Boltcall offers a free trial so you can test it with real calls before committing.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Do AI receptionists work for all types of businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">AI receptionists work best for service businesses that receive high call volumes and book appointments: dental, medical, HVAC, plumbing, legal, real estate, and med spas. Businesses with highly complex or regulated conversations may still need human oversight for edge cases.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How long does it take to set up an AI receptionist?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall can be live in 30 minutes. You provide your business name, services, hours, and FAQs — the AI is trained on your specifics. Calendar integration takes another 5–10 minutes. <Link to="/pricing" className="text-blue-600 hover:underline">See Boltcall plans and pricing.</Link></p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

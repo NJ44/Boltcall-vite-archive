@@ -81,9 +81,27 @@ const BlogAIReceptionistHowItWorks: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "How AI Receptionist Works", "item": "https://boltcall.org/blog/how-ai-receptionist-works"}]});
     document.head.appendChild(bcScript);
+
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How does an AI receptionist understand what callers are saying?", "acceptedAnswer": { "@type": "Answer", "text": "AI receptionists use natural language processing (NLP) to convert speech to text in real time, then analyze the meaning using large language models trained on millions of conversations. This allows them to understand intent — whether a caller wants to book, cancel, get information, or speak to someone — even with accents or background noise." } },
+        { "@type": "Question", "name": "Can an AI receptionist book appointments in real time?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Boltcall's AI receptionist connects directly to your calendar system and can check availability, offer open slots, and confirm bookings during the call — without any human involvement. The caller receives an SMS confirmation within seconds." } },
+        { "@type": "Question", "name": "What happens if an AI receptionist doesn't understand a caller?", "acceptedAnswer": { "@type": "Answer", "text": "When confidence is low, the AI asks a clarifying question or offers to transfer the caller to a team member. It never hangs up on a caller. If escalation is needed, the system notifies the business owner immediately via text or app." } },
+        { "@type": "Question", "name": "How is an AI receptionist different from a phone tree or IVR?", "acceptedAnswer": { "@type": "Answer", "text": "A phone tree (IVR) requires callers to press numbers from a fixed menu. An AI receptionist holds a natural two-way conversation — callers can say what they need in their own words and the AI responds intelligently. There are no menus, no hold music, and no frustration." } },
+        { "@type": "Question", "name": "Does an AI receptionist work with my existing calendar software?", "acceptedAnswer": { "@type": "Answer", "text": "Most AI receptionists, including Boltcall, integrate with Google Calendar, Outlook, and major practice management systems. Setup typically takes under 30 minutes with no coding required." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       const scriptToRemove = document.getElementById('article-schema');
       if (scriptToRemove) scriptToRemove.remove();
       speakableScript.remove();
@@ -545,6 +563,35 @@ const BlogAIReceptionistHowItWorks: React.FC = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does an AI receptionist understand what callers are saying?</h3>
+              <p className="text-gray-600 leading-relaxed">AI receptionists use natural language processing (NLP) to convert speech to text in real time, then analyze the meaning using large language models trained on millions of conversations. This allows them to understand intent — whether a caller wants to book, cancel, get information, or speak to someone — even with accents or background noise.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Can an AI receptionist book appointments in real time?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. Boltcall's AI receptionist connects directly to your calendar system and can check availability, offer open slots, and confirm bookings during the call — without any human involvement. The caller receives an SMS confirmation within seconds.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What happens if an AI receptionist doesn't understand a caller?</h3>
+              <p className="text-gray-600 leading-relaxed">When confidence is low, the AI asks a clarifying question or offers to transfer the caller to a team member. It never hangs up on a caller. If escalation is needed, the system notifies the business owner immediately via text or app.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How is an AI receptionist different from a phone tree or IVR?</h3>
+              <p className="text-gray-600 leading-relaxed">A phone tree (IVR) requires callers to press numbers from a fixed menu. An AI receptionist holds a natural two-way conversation — callers can say what they need in their own words and the AI responds intelligently. There are no menus, no hold music, and no frustration.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Does an AI receptionist work with my existing calendar software?</h3>
+              <p className="text-gray-600 leading-relaxed">Most AI receptionists, including Boltcall, integrate with Google Calendar, Outlook, and major practice management systems. Setup typically takes under 30 minutes with no coding required. <Link to="/pricing" className="text-blue-600 hover:underline">See Boltcall pricing and plans.</Link></p>
+            </div>
           </div>
         </div>
       </section>

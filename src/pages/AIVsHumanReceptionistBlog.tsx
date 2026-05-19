@@ -67,9 +67,27 @@ const AIVsHumanReceptionistBlog: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "AI vs Human Receptionist", "item": "https://boltcall.org/blog/ai-vs-human-receptionist"}]});
     document.head.appendChild(bcScript);
+
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How much does an AI receptionist cost compared to a human?", "acceptedAnswer": { "@type": "Answer", "text": "An AI receptionist costs $79–$299/month, while a full-time human receptionist costs $38,000–$54,000/year including salary and benefits. That's 70–90% less with AI, and you get 24/7 coverage with no sick days or turnover." } },
+        { "@type": "Question", "name": "Can an AI receptionist replace a human receptionist entirely?", "acceptedAnswer": { "@type": "Answer", "text": "For most routine tasks — appointment booking, FAQs, lead capture, and after-hours calls — yes. AI handles 80–90% of inbound calls without human help. Complex escalations or emotional situations still benefit from human judgment, so many businesses use AI as their primary layer with a human fallback." } },
+        { "@type": "Question", "name": "What happens when an AI receptionist encounters a complex question?", "acceptedAnswer": { "@type": "Answer", "text": "Modern AI receptionists like Boltcall detect when a call requires human intervention and transfer the call immediately to the appropriate person. The AI can also take a message and trigger an instant callback notification so no lead is lost." } },
+        { "@type": "Question", "name": "Does an AI receptionist work 24/7?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. An AI receptionist works 24 hours a day, 7 days a week — including nights, weekends, and holidays — at no extra cost. This is one of its biggest advantages over a human receptionist who only covers standard business hours." } },
+        { "@type": "Question", "name": "How quickly can I set up an AI receptionist?", "acceptedAnswer": { "@type": "Answer", "text": "With Boltcall, setup takes about 30 minutes. You configure your business greeting, FAQ responses, and calendar integration — then your AI is live. No technical expertise is required." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       document.head.removeChild(script);
     };
   }, []);
@@ -692,6 +710,35 @@ const AIVsHumanReceptionistBlog: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How much does an AI receptionist cost compared to a human?</h3>
+              <p className="text-gray-600 leading-relaxed">An AI receptionist costs $79–$299/month, while a full-time human receptionist costs $38,000–$54,000/year including salary and benefits. That's 70–90% less with AI, and you get 24/7 coverage with no sick days or turnover.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Can an AI receptionist replace a human receptionist entirely?</h3>
+              <p className="text-gray-600 leading-relaxed">For most routine tasks — appointment booking, FAQs, lead capture, and after-hours calls — yes. AI handles 80–90% of inbound calls without human help. Complex escalations or emotional situations still benefit from human judgment, so many businesses use AI as their primary layer with a human fallback.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What happens when an AI receptionist encounters a complex question?</h3>
+              <p className="text-gray-600 leading-relaxed">Modern AI receptionists like Boltcall detect when a call requires human intervention and transfer the call immediately to the appropriate person. The AI can also take a message and trigger an instant callback notification so no lead is lost.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Does an AI receptionist work 24/7?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. An AI receptionist works 24 hours a day, 7 days a week — including nights, weekends, and holidays — at no extra cost. This is one of its biggest advantages over a human receptionist who only covers standard business hours.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How quickly can I set up an AI receptionist?</h3>
+              <p className="text-gray-600 leading-relaxed">With Boltcall, setup takes about 30 minutes. You configure your business greeting, FAQ responses, and calendar integration — then your AI is live. No technical expertise is required. <Link to="/pricing" className="text-blue-600 hover:underline">See Boltcall pricing</Link> to get started.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );

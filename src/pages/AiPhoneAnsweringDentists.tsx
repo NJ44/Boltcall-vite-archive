@@ -51,10 +51,27 @@ const AiPhoneAnsweringDentists: React.FC = () => {
     personScript.text = JSON.stringify({"@context":"https://schema.org","@type":"Person","name":"Boltcall Team","url":"https://boltcall.org/about","worksFor":{"@type":"Organization","name":"Boltcall","url":"https://boltcall.org"}});
     document.head.appendChild(personScript);
 
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can an AI receptionist handle dental appointment scheduling?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. An AI receptionist like Boltcall integrates with your dental practice management software to check availability and book appointments in real time during the call. Patients can confirm, reschedule, or cancel without waiting on hold, 24 hours a day." } },
+        { "@type": "Question", "name": "Is an AI phone answering service HIPAA compliant?", "acceptedAnswer": { "@type": "Answer", "text": "HIPAA compliance depends on the vendor. Boltcall is designed with dental and medical practices in mind and operates under a Business Associate Agreement (BAA). Patient call data is encrypted in transit and at rest. Always verify BAA availability before adopting any AI phone system for a dental practice." } },
+        { "@type": "Question", "name": "How does AI phone answering improve patient experience at dental offices?", "acceptedAnswer": { "@type": "Answer", "text": "AI answering eliminates hold times, answers after-hours calls instantly, and gives patients immediate confirmation of their booking. Patients no longer leave voicemails or call back the next day — they get resolution in under two minutes any time of day." } },
+        { "@type": "Question", "name": "What happens when a dental patient calls after hours?", "acceptedAnswer": { "@type": "Answer", "text": "With Boltcall, the AI answers immediately, collects the patient's name and concern, offers available appointment times, and confirms the booking via SMS. Dental emergencies can be routed to an on-call number. No voicemails, no missed new-patient leads." } },
+        { "@type": "Question", "name": "How much can a dental office save by switching to AI phone answering?", "acceptedAnswer": { "@type": "Answer", "text": "Dental practices typically save $20,000–$40,000/year by replacing a full-time front-desk receptionist with an AI system. Beyond salary savings, recovering just 2–3 missed new-patient calls per week can generate $50,000–$100,000 in additional annual revenue depending on treatment mix." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('person-schema')?.remove();
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('article-schema-dentists')?.remove();
+      document.getElementById('faq-schema')?.remove();
     };
   }, []);
 
@@ -282,6 +299,36 @@ const AiPhoneAnsweringDentists: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Can an AI receptionist handle dental appointment scheduling?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. An AI receptionist like Boltcall integrates with your dental practice management software to check availability and book appointments in real time during the call. Patients can confirm, reschedule, or cancel without waiting on hold, 24 hours a day.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Is an AI phone answering service HIPAA compliant?</h3>
+              <p className="text-gray-600 leading-relaxed">HIPAA compliance depends on the vendor. Boltcall is designed with dental and medical practices in mind and operates under a Business Associate Agreement (BAA). Patient call data is encrypted in transit and at rest. Always verify BAA availability before adopting any AI phone system for a dental practice.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does AI phone answering improve patient experience at dental offices?</h3>
+              <p className="text-gray-600 leading-relaxed">AI answering eliminates hold times, answers after-hours calls instantly, and gives patients immediate confirmation of their booking. Patients no longer leave voicemails or call back the next day — they get resolution in under two minutes any time of day.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What happens when a dental patient calls after hours?</h3>
+              <p className="text-gray-600 leading-relaxed">With Boltcall, the AI answers immediately, collects the patient's name and concern, offers available appointment times, and confirms the booking via SMS. Dental emergencies can be routed to an on-call number. No voicemails, no missed new-patient leads.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How much can a dental office save by switching to AI phone answering?</h3>
+              <p className="text-gray-600 leading-relaxed">Dental practices typically save $20,000–$40,000/year by replacing a full-time front-desk receptionist with an AI system. Beyond salary savings, recovering just 2–3 missed new-patient calls per week can generate significant additional annual revenue.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

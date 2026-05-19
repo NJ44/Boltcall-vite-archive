@@ -68,9 +68,26 @@ const BlogSEO: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "Complete Guide to SEO", "item": "https://boltcall.org/blog/complete-guide-to-seo"}]});
     document.head.appendChild(bcScript);
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is SEO and why does it matter for local businesses?", "acceptedAnswer": { "@type": "Answer", "text": "SEO (Search Engine Optimization) is the process of improving your website so it ranks higher in Google search results for terms your customers are searching. For local businesses, it means appearing when someone searches 'plumber near me' or 'dentist open now' — which drives free, high-intent traffic without paying for ads." } },
+        { "@type": "Question", "name": "How long does it take to see SEO results?", "acceptedAnswer": { "@type": "Answer", "text": "Most local businesses start seeing meaningful ranking improvements in 3–6 months with consistent SEO work. Google Business Profile optimizations can show results in weeks. Technical fixes (site speed, structured data) can show faster improvements. SEO is a compounding investment — the longer you do it, the stronger the results." } },
+        { "@type": "Question", "name": "What are the most important SEO ranking factors for local businesses?", "acceptedAnswer": { "@type": "Answer", "text": "The top local SEO ranking factors are: Google Business Profile completeness and reviews, website content relevance and word count, mobile-friendliness and page speed, local citations (consistent name/address/phone across directories), and backlinks from local and industry sources." } },
+        { "@type": "Question", "name": "Is local SEO different from national SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Local SEO focuses on ranking in the Google Map Pack and local search results for geography-specific queries. It requires optimizing your Google Business Profile, earning local reviews, and building local citations. National SEO focuses on broader keyword rankings regardless of location." } },
+        { "@type": "Question", "name": "How does AI affect SEO strategy for local businesses?", "acceptedAnswer": { "@type": "Answer", "text": "AI search (Google AI Overviews, Perplexity, ChatGPT) is increasingly answering queries directly rather than sending traffic to websites. To stay visible, local businesses need AEO (Answer Engine Optimization) — creating structured FAQ content, clear definition paragraphs, and schema markup so AI systems cite your content as the authoritative source." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       const scriptToRemove = document.getElementById('article-schema');
       if (scriptToRemove) scriptToRemove.remove();
     };
@@ -569,6 +586,35 @@ const BlogSEO: React.FC = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is SEO and why does it matter for local businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">SEO (Search Engine Optimization) is the process of improving your website so it ranks higher in Google search results. For local businesses, it means appearing when someone searches "plumber near me" or "dentist open now" — driving free, high-intent traffic without paying for ads.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How long does it take to see SEO results?</h3>
+              <p className="text-gray-600 leading-relaxed">Most local businesses start seeing meaningful ranking improvements in 3–6 months with consistent SEO work. Google Business Profile optimizations can show results in weeks. SEO is a compounding investment — the longer you do it, the stronger the results.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What are the most important SEO ranking factors for local businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">The top local SEO ranking factors are: Google Business Profile completeness and reviews, website content relevance and word count, mobile-friendliness and page speed, local citations (consistent name/address/phone), and backlinks from local and industry sources.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Is local SEO different from national SEO?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. Local SEO focuses on ranking in the Google Map Pack and local search results for geography-specific queries. It requires optimizing your Google Business Profile, earning local reviews, and building local citations. National SEO focuses on broader keyword rankings regardless of location.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does AI affect SEO strategy for local businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">AI search (Google AI Overviews, Perplexity, ChatGPT) increasingly answers queries directly. To stay visible, local businesses need AEO — creating structured FAQ content, clear definition paragraphs, and schema markup so AI systems cite your content. <Link to="/pricing" className="text-blue-600 hover:underline">Get Boltcall to help capture every lead from every channel.</Link></p>
+            </div>
           </div>
         </div>
       </section>

@@ -64,9 +64,26 @@ const BestAiReceptionistSmallBusiness: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "Best AI Receptionist for Small Business", "item": "https://boltcall.org/blog/best-ai-receptionist-small-business"}]});
     document.head.appendChild(bcScript);
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'faq-schema';
+    faqScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the best AI receptionist for small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall is the leading AI receptionist for small businesses, offering 24/7 call answering, instant SMS lead response, live appointment booking, and missed-call follow-up in one platform starting at $79/month. It's designed specifically for local service businesses that need reliable coverage without adding staff." } },
+        { "@type": "Question", "name": "How much does an AI receptionist cost for a small business?", "acceptedAnswer": { "@type": "Answer", "text": "AI receptionist pricing for small businesses ranges from $49 to $299/month depending on call volume and features. Boltcall's most popular plan for small businesses is $79/month — that's less than $3/day for 24/7 phone coverage." } },
+        { "@type": "Question", "name": "Can a small business afford an AI receptionist?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. AI receptionists are 80–95% cheaper than hiring even a part-time human receptionist. At $79–$179/month, the math is simple: if the AI captures even one extra job per month that would have gone to voicemail, it pays for itself. Most small businesses recoup the cost within the first week." } },
+        { "@type": "Question", "name": "What is the easiest AI receptionist to set up?", "acceptedAnswer": { "@type": "Answer", "text": "Boltcall is designed to go live in 30 minutes. You enter your business name, services, hours, and FAQs — no coding or technical skills needed. The AI is pre-trained on common local business scenarios and customizes itself to your specific industry." } },
+        { "@type": "Question", "name": "How does an AI receptionist help small businesses grow?", "acceptedAnswer": { "@type": "Answer", "text": "An AI receptionist captures leads that would otherwise go to voicemail, responds to every missed call with an instant text, and books appointments 24/7 — including nights and weekends. This directly converts more inbound interest into paying customers without increasing headcount or overhead." } }
+      ]
+    });
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       document.head.removeChild(script);
     };
   }, []);
@@ -591,6 +608,36 @@ const BestAiReceptionistSmallBusiness: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the best AI receptionist for small businesses?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall is the leading AI receptionist for small businesses, offering 24/7 call answering, instant SMS lead response, live appointment booking, and missed-call follow-up in one platform starting at $79/month. It's designed specifically for local service businesses that need reliable coverage without adding staff.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How much does an AI receptionist cost for a small business?</h3>
+              <p className="text-gray-600 leading-relaxed">AI receptionist pricing for small businesses ranges from $49 to $299/month depending on call volume and features. Boltcall's most popular plan is $79/month — less than $3/day for 24/7 phone coverage. <Link to="/pricing" className="text-blue-600 hover:underline">See all plans.</Link></p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Can a small business afford an AI receptionist?</h3>
+              <p className="text-gray-600 leading-relaxed">Yes. AI receptionists are 80–95% cheaper than hiring even a part-time human receptionist. At $79–$179/month, if the AI captures even one extra job per month that would have gone to voicemail, it pays for itself. Most small businesses recoup the cost within the first week.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the easiest AI receptionist to set up?</h3>
+              <p className="text-gray-600 leading-relaxed">Boltcall is designed to go live in 30 minutes. You enter your business name, services, hours, and FAQs — no coding or technical skills needed. The AI is pre-trained on common local business scenarios and customizes itself to your specific industry.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How does an AI receptionist help small businesses grow?</h3>
+              <p className="text-gray-600 leading-relaxed">An AI receptionist captures leads that would otherwise go to voicemail, responds to every missed call with an instant text, and books appointments 24/7 — including nights and weekends. This directly converts more inbound interest into paying customers without increasing headcount or overhead.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );
