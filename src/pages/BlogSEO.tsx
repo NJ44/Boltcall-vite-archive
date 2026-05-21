@@ -68,9 +68,51 @@ const BlogSEO: React.FC = () => {
     bcScript.id = 'breadcrumb-jsonld';
     bcScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://boltcall.org"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://boltcall.org/blog"}, {"@type": "ListItem", "position": 3, "name": "Complete Guide to SEO", "item": "https://boltcall.org/blog/complete-guide-to-seo"}]});
     document.head.appendChild(bcScript);
+
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is SEO for local businesses?',
+          acceptedAnswer: { '@type': 'Answer', text: "SEO for local businesses means optimizing your website and online presence so that nearby customers find you when they search Google for services you offer. It includes Google Business Profile optimization, local keyword targeting, and building citations so Google knows you're relevant in your area." },
+        },
+        {
+          '@type': 'Question',
+          name: 'How long does SEO take to work for a local business?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Most local businesses see initial improvement in 3–6 months with consistent SEO work. Google Business Profile changes can show results in weeks; organic search rankings typically take 3–6 months. Competitive markets take longer; low-competition local niches can rank faster.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the most important SEO factor for local businesses?',
+          acceptedAnswer: { '@type': 'Answer', text: "Google Business Profile is the most important SEO factor for local service businesses. Followed closely by on-page optimization (title tags, meta descriptions, H1s), citation consistency (same NAP across directories), and customer reviews. Technical SEO matters but rarely blocks local rankings." },
+        },
+        {
+          '@type': 'Question',
+          name: 'How does speed-to-lead connect to SEO?',
+          acceptedAnswer: { '@type': 'Answer', text: 'SEO gets leads to your door — speed-to-lead determines whether you close them. A business that ranks #1 but responds slowly loses jobs to the #3 result that responds in 30 seconds. Boltcall ensures every SEO-generated lead gets an instant response.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does Boltcall help with local business SEO?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Boltcall focuses on speed-to-lead — the follow-up layer after SEO delivers a visitor or call. It also provides SEO resources and tools for local businesses to maximize both their search visibility and their lead conversion rate once customers find them.' },
+        },
+      ],
+    };
+
+    const existingFaq = document.getElementById('faq-schema');
+    if (existingFaq) existingFaq.remove();
+    const faqScript = document.createElement('script');
+    faqScript.id = 'faq-schema';
+    faqScript.type = 'application/ld+json';
+    faqScript.text = JSON.stringify(faqSchema);
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('person-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
       const scriptToRemove = document.getElementById('article-schema');
       if (scriptToRemove) scriptToRemove.remove();
     };
@@ -276,7 +318,7 @@ const BlogSEO: React.FC = () => {
 
           <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">1. Technical SEO</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What is technical SEO and why does it matter?</h3>
                 <p className="mb-3">
                   Your website needs to be fast, mobile-friendly, and easy for search engines 
                   to crawl. This includes:
@@ -291,7 +333,7 @@ const BlogSEO: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">2. On-Page SEO</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">How does on-page SEO help local businesses rank?</h3>
                 <p className="mb-3">
                   Every page should be optimized for both users and search engines:
                 </p>
@@ -305,7 +347,7 @@ const BlogSEO: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">3. Content Quality</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Does content quality still matter for SEO in 2026?</h3>
                 <p className="mb-3">
                   Google rewards websites that provide value. Your content should:
                 </p>
@@ -319,7 +361,7 @@ const BlogSEO: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">4. Local SEO (For Local Businesses)</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What makes local SEO different for service businesses?</h3>
                 <p className="mb-3">
                   If you serve a local area, local SEO is crucial:
                 </p>
@@ -570,6 +612,36 @@ const BlogSEO: React.FC = () => {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {[
+            {
+              q: 'What is the most important SEO factor for local businesses?',
+              a: "Google Business Profile is the most important SEO factor for local service businesses — followed by on-page optimization, citation consistency, and customer reviews. Technical SEO matters but rarely blocks local rankings.",
+            },
+            {
+              q: 'How long does SEO take to work for a local business?',
+              a: 'Most local businesses see initial improvement in 3–6 months. Google Business Profile changes can show results in weeks; organic rankings typically take 3–6 months. Low-competition local niches rank faster.',
+            },
+            {
+              q: 'Does content quality still matter for local SEO in 2026?',
+              a: "Yes — Google's Helpful Content update penalizes thin or AI-generated pages that don't genuinely help the reader. Local businesses need to publish real advice, specific to their market, that answers questions customers are actually searching.",
+            },
+            {
+              q: 'How does speed-to-lead connect to SEO?',
+              a: 'SEO gets leads to your door — speed-to-lead determines whether you close them. A business that ranks #1 but responds slowly loses jobs to the #3 result that responds in 30 seconds. Boltcall ensures every SEO-generated lead gets an instant response.',
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="border border-gray-200 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{q}</h3>
+              <p className="text-gray-700 leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
       </section>
 

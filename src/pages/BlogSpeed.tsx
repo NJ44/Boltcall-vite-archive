@@ -15,8 +15,8 @@ const BlogSpeed: React.FC = () => {
   const headings = useTableOfContents();
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'The 391% Advantage: Why Responding to Leads in 60 Seconds Matters';
-    updateMetaDescription('Discover the 391% advantage: responding to leads within 60 seconds dramatically increases conversion rates. Learn why speed-to-lead is the single biggest lever for local business growth.');
+    document.title = 'Speed to Lead: The 391% Advantage | Boltcall';
+    updateMetaDescription('Responding to leads in 60 seconds makes you 391% more likely to convert. Learn why speed-to-lead wins more jobs for local businesses. Start free with Boltcall.');
     
     // Add Article schema markup
     const articleSchema = {
@@ -69,9 +69,50 @@ const BlogSpeed: React.FC = () => {
     personScript.text = JSON.stringify({"@context":"https://schema.org","@type":"Person","name":"Boltcall Team","url":"https://boltcall.org/about","worksFor":{"@type":"Organization","name":"Boltcall","url":"https://boltcall.org"}});
     document.head.appendChild(personScript);
 
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How much does response time affect lead conversion?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Responding to a lead within 60 seconds makes you 391% more likely to convert them versus waiting 5 minutes. At 10 minutes, you are 10x less likely to even reach the person. Speed-to-lead is the single biggest conversion lever for local service businesses.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the ideal response time for a local business lead?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Under 60 seconds is the gold standard. The MIT Sloan and Harvard Business Review research both confirm that the first 60 seconds is when lead intent is highest. Every minute beyond that dramatically reduces your odds of converting the lead.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Why do leads stop responding after 5 minutes?',
+          acceptedAnswer: { '@type': 'Answer', text: "After 5 minutes, most people have already called a competitor or moved on mentally. They're in active buying mode when they first reach out — that window closes fast. After 10 minutes, 80% of leads have disengaged." },
+        },
+        {
+          '@type': 'Question',
+          name: 'How can a local business respond to every lead in 60 seconds?',
+          acceptedAnswer: { '@type': 'Answer', text: 'The only reliable way to achieve sub-60-second response is automation: an AI receptionist that answers calls instantly, SMS auto-response to form submissions, and missed call text-back. Boltcall handles all three so every lead gets responded to in under 11 seconds.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the ROI of faster lead response?',
+          acceptedAnswer: { '@type': 'Answer', text: 'A business receiving 200 leads/month at 10% conversion ($400 avg value) earns $8,000/month. Instant response can push conversion to 39%, generating $31,200/month — a $23,200 monthly increase. Even conservative 2x improvement adds $8,000/month in revenue.' },
+        },
+      ],
+    };
+
+    const existingFaq = document.getElementById('faq-schema');
+    if (existingFaq) existingFaq.remove();
+    const faqScript = document.createElement('script');
+    faqScript.id = 'faq-schema';
+    faqScript.type = 'application/ld+json';
+    faqScript.text = JSON.stringify(faqSchema);
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('person-schema')?.remove();
       document.getElementById('breadcrumb-jsonld')?.remove();
+      document.getElementById('faq-schema')?.remove();
       const scriptToRemove = document.getElementById('article-schema');
       if (scriptToRemove) scriptToRemove.remove();
     };
@@ -222,21 +263,21 @@ const BlogSpeed: React.FC = () => {
               options, reading reviews, and making decisions right now.
             </p>
             
-            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">1. First Contact Wins</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why does the first contact win the deal?</h3>
             <p>
               The first business to respond gets the customer. It's that simple. When you 
               contact a lead within 60 seconds, you're not just fast—you're first. And 
               being first means you control the conversation.
             </p>
             
-            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">2. Momentum Matters</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Does buyer momentum really fade that fast?</h3>
             <p>
               Buying decisions are emotional. When someone reaches out, they're excited, 
               interested, and ready to act. Wait 5 minutes, and that excitement fades. 
               Wait 30 minutes, and they've already moved on to your competitor.
             </p>
             
-            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">3. Perceived Value</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How does response time signal your business quality?</h3>
             <p>
               Fast response times signal that you care. They show you're professional, 
               organized, and ready to serve. Slow responses? They signal the opposite. 
@@ -645,6 +686,36 @@ const BlogSpeed: React.FC = () => {
         </div>
         <p className="text-xs text-gray-400 mt-3 text-center">Source: Lead Response Management study published in Harvard Business Review. Data from service industry leads.</p>
       </section>
+      {/* FAQ Section */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {[
+            {
+              q: 'How much does response time affect lead conversion?',
+              a: 'Responding within 60 seconds makes you 391% more likely to convert a lead versus waiting 5 minutes. At 10 minutes, you are 10x less likely to reach them. Speed-to-lead is the single biggest conversion lever for local service businesses.',
+            },
+            {
+              q: 'Why do leads stop responding after 5 minutes?',
+              a: "After 5 minutes most people have already called a competitor or mentally moved on. They're in active buying mode when they first reach out — that window closes fast. After 10 minutes, 80% of leads have disengaged.",
+            },
+            {
+              q: 'How can a local business respond to every lead in 60 seconds?',
+              a: 'The only reliable way is automation: an AI receptionist that answers calls instantly, SMS auto-response to form submissions, and missed call text-back. Boltcall handles all three so every lead gets a response in under 11 seconds — 24/7.',
+            },
+            {
+              q: 'What is the ROI of faster lead response?',
+              a: 'A business with 200 leads/month at 10% conversion ($400 avg value) earns $8,000/month. Instant response can push conversion toward 39%, generating $31,200/month — a $23,200 monthly increase from responding faster alone.',
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="border border-gray-200 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{q}</h3>
+              <p className="text-gray-700 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

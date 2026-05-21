@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { updateMetaDescription } from '../lib/utils';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Phone } from 'lucide-react';
 import Header from '../components/Header';
@@ -15,8 +16,8 @@ const BlogAIReceptionistDentists: React.FC = () => {
   const headings = useTableOfContents();
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'AI Receptionist for Dentists: Stop Losing Patients to Missed Calls | Boltcall';
-    updateMetaDescription('How dental practices use AI receptionists to answer every call, book appointments 24/7, and stop losing new patients to missed calls. Practical guide for dentists.');
+    document.title = 'AI Receptionist for Dentists: Stop Missed Calls | Boltcall';
+    updateMetaDescription('Dental practices use AI receptionists to answer every call and book appointments 24/7. Stop losing new patients to missed calls. Get started free with Boltcall.');
 
     const articleSchema = {
       "@context": "https://schema.org",
@@ -82,10 +83,51 @@ const BlogAIReceptionistDentists: React.FC = () => {
     });
     document.head.appendChild(personScript);
 
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is an AI receptionist for a dental practice?',
+          acceptedAnswer: { '@type': 'Answer', text: 'An AI receptionist for a dental practice answers every inbound call automatically, 24/7. It handles appointment scheduling, answers FAQs about hours and insurance, and escalates dental emergencies — all without requiring a human front desk staff member to be available.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many calls does the average dental practice miss per day?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Industry data shows 1 in 3 calls to the average dental practice goes unanswered during peak hours. At $800–$1,200 estimated lifetime value per new patient, a practice missing 30–50 calls/month loses $24,000–$60,000 in annual revenue.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can an AI receptionist integrate with dental practice management software?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Yes. Modern AI receptionists integrate directly with Dentrix, Open Dental, Eaglesoft, and Curve Hero to check real-time availability and book appointments during the call — no human needed to confirm slots.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Will patients know they are talking to an AI?',
+          acceptedAnswer: { '@type': 'Answer', text: "Modern AI voice technology sounds natural and conversational. Most patients cannot distinguish it from a human receptionist in routine scheduling calls. You can also configure the AI to disclose it's automated if you prefer transparency." },
+        },
+        {
+          '@type': 'Question',
+          name: 'How does Boltcall help dental practices reduce missed calls?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Boltcall provides dental practices with an AI receptionist that answers every inbound call instantly, responds to web and SMS inquiries, and books appointments directly into practice management systems — 24/7 without any staff involvement.' },
+        },
+      ],
+    };
+
+    const existingFaq = document.getElementById('faq-schema');
+    if (existingFaq) existingFaq.remove();
+    const faqScript = document.createElement('script');
+    faqScript.id = 'faq-schema';
+    faqScript.type = 'application/ld+json';
+    faqScript.text = JSON.stringify(faqSchema);
+    document.head.appendChild(faqScript);
+
     return () => {
       document.getElementById('person-schema')?.remove();
       document.getElementById('breadcrumb-jsonld')?.remove();
       document.getElementById('article-schema')?.remove();
+      document.getElementById('faq-schema')?.remove();
     };
   }, []);
 
@@ -282,7 +324,7 @@ const BlogAIReceptionistDentists: React.FC = () => {
 
               <div className="space-y-8 text-gray-700 leading-relaxed">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Scenario 1: After-hours new patient calls</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">What happens to after-hours new patient calls without AI?</h3>
                   <p>
                     A prospective patient has a toothache and finally decides to call a dentist at
                     8:30 PM on a Tuesday. Your office is closed. Without an AI receptionist, they reach
@@ -295,7 +337,7 @@ const BlogAIReceptionistDentists: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Scenario 2: Peak morning overflow</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">How does AI handle peak morning overflow calls?</h3>
                   <p>
                     Monday mornings in a dental practice are notoriously busy. The phone rings 4 times
                     before 9 AM, the front desk is checking in two patients simultaneously, and the
@@ -307,7 +349,7 @@ const BlogAIReceptionistDentists: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Scenario 3: Recall and reactivation outreach</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Can AI automate patient recall and reactivation outreach?</h3>
                   <p>
                     Patients who are overdue for cleanings or have unscheduled treatment plans
                     represent significant untapped revenue. An AI system can proactively reach out to
@@ -522,6 +564,28 @@ const BlogAIReceptionistDentists: React.FC = () => {
               </div>
             </motion.div>
 
+            {/* Related Articles */}
+            <div className="mb-10 border-t border-gray-100 pt-8">
+              <p className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-4">Related Reading</p>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/blog/fastest-way-dentist-respond-missed-calls-automatically" className="text-blue-600 hover:underline font-medium text-sm">
+                    What Is the Fastest Way for a Dentist to Respond to Missed Calls Automatically?
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog/why-local-service-businesses-lose-customers-not-answering-calls" className="text-blue-600 hover:underline font-medium text-sm">
+                    Why Do Local Service Businesses Lose Customers by Not Answering Calls Quickly Enough?
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog/does-response-time-affect-whether-local-business-gets-job" className="text-blue-600 hover:underline font-medium text-sm">
+                    Does Response Time Affect Whether a Local Business Gets the Job?
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
           </article>
 
           {/* Sidebar TOC */}
@@ -532,6 +596,36 @@ const BlogAIReceptionistDentists: React.FC = () => {
           </aside>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {[
+            {
+              q: 'How many calls does the average dental practice miss?',
+              a: '1 in 3 calls to the average dental practice goes unanswered during peak hours. At $800–$1,200 lifetime patient value, missing 30–50 new patient calls per month means losing $24,000–$60,000 per year in revenue.',
+            },
+            {
+              q: 'Can an AI receptionist book dental appointments directly?',
+              a: 'Yes. Modern AI receptionists integrate with Dentrix, Open Dental, Eaglesoft, and Curve Hero to check real-time availability and book appointments during the call — no human needed to confirm slots.',
+            },
+            {
+              q: 'Will dental patients know they are talking to an AI?',
+              a: "Modern AI voice technology sounds natural and conversational in routine scheduling calls. You can also configure the AI to disclose it's automated if you prefer full transparency with your patients.",
+            },
+            {
+              q: 'How does Boltcall help dental practices handle missed calls?',
+              a: 'Boltcall provides dental practices with an AI receptionist that answers every call instantly, responds to web and SMS inquiries, and books appointments directly into your practice management system — 24/7 without any staff involvement.',
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="border border-gray-200 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{q}</h3>
+              <p className="text-gray-700 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <Footer />
     </div>

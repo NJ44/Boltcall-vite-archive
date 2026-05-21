@@ -226,6 +226,15 @@ const BestAIAnsweringServiceDentalMedical = React.lazy(() => import('../pages/Be
 const BlogAfterHoursLeadResponse = React.lazy(() => import('../pages/BlogAfterHoursLeadResponse'));
 const BlogAIReceptionistMedSpa = React.lazy(() => import('../pages/BlogAIReceptionistMedSpa'));
 const BlogSolarAILeadResponse = React.lazy(() => import('../pages/BlogSolarAILeadResponse'));
+const BlogWhyLocalServiceLoseCustomers = React.lazy(() => import('../pages/BlogWhyLocalServiceLoseCustomers'));
+const BlogDoesResponseTimeAffectLocalBusiness = React.lazy(() => import('../pages/BlogDoesResponseTimeAffectLocalBusiness'));
+const BlogFastestWayDentistRespondMissedCalls = React.lazy(() => import('../pages/BlogFastestWayDentistRespondMissedCalls'));
+const BlogWhatHappensPlumberMissesCall = React.lazy(() => import('../pages/BlogWhatHappensPlumberMissesCall'));
+const BlogBestAIReceptionistCompanies = React.lazy(() => import('../pages/BlogBestAIReceptionistCompanies'));
+const BlogBestAIVirtualReceptionistReviews = React.lazy(() => import('../pages/BlogBestAIVirtualReceptionistReviews'));
+const BlogBestRatedAIVirtualReceptionistVoice = React.lazy(() => import('../pages/BlogBestRatedAIVirtualReceptionistVoice'));
+const BlogBestWayHVACNeverMissCall = React.lazy(() => import('../pages/BlogBestWayHVACNeverMissCall'));
+const BlogHowFastRespondLocalLead = React.lazy(() => import('../pages/BlogHowFastRespondLocalLead'));
 
 // ── Lazy loads — Comparisons ─────────────────────────────────────────────
 const Comparisons = React.lazy(() => import('../pages/Comparisons'));
@@ -491,6 +500,15 @@ const NavigationWrapper: React.FC = () => {
         <Route path="/blog/after-hours-lead-response-home-services" element={<BlogAfterHoursLeadResponse />} />
         <Route path="/blog/ai-receptionist-med-spas" element={<BlogAIReceptionistMedSpa />} />
         <Route path="/blog/solar-ai-lead-response" element={<BlogSolarAILeadResponse />} />
+        <Route path="/blog/why-local-service-businesses-lose-customers-not-answering-calls" element={<BlogWhyLocalServiceLoseCustomers />} />
+        <Route path="/blog/does-response-time-affect-whether-local-business-gets-job" element={<BlogDoesResponseTimeAffectLocalBusiness />} />
+        <Route path="/blog/fastest-way-dentist-respond-missed-calls-automatically" element={<BlogFastestWayDentistRespondMissedCalls />} />
+        <Route path="/blog/what-happens-plumber-misses-customer-call-urgent-service" element={<BlogWhatHappensPlumberMissesCall />} />
+        <Route path="/blog/best-ai-receptionist-companies-local-service" element={<BlogBestAIReceptionistCompanies />} />
+        <Route path="/blog/best-ai-virtual-receptionist-customer-reviews" element={<BlogBestAIVirtualReceptionistReviews />} />
+        <Route path="/blog/best-rated-ai-virtual-receptionist-voice-quality" element={<BlogBestRatedAIVirtualReceptionistVoice />} />
+        <Route path="/blog/best-way-hvac-company-never-miss-service-call-customer" element={<BlogBestWayHVACNeverMissCall />} />
+        <Route path="/blog/how-fast-local-service-business-respond-online-lead-inquiry" element={<BlogHowFastRespondLocalLead />} />
         </Route>
         <Route path="/comparisons" element={<Comparisons />} />
         <Route path="/comparisons/call-centers-vs-boltcall" element={<TraditionalCallCentersVsBoltcall />} />

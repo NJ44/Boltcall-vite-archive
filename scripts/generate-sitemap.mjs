@@ -126,6 +126,17 @@ const ROUTES = [
   { path: "/blog/never-miss-a-call-after-business-hours",            priority: "0.8", changefreq: "weekly" },
   { path: "/blog/whatsapp-appointment-booking-plumbers",             priority: "0.8", changefreq: "weekly" },
 
+  // Blog AEO Answer Pages
+  { path: "/blog/why-local-service-businesses-lose-customers-not-answering-calls", priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/does-response-time-affect-whether-local-business-gets-job",       priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/fastest-way-dentist-respond-missed-calls-automatically",          priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/what-happens-plumber-misses-customer-call-urgent-service",        priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/best-way-hvac-company-never-miss-service-call-customer",          priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/how-fast-local-service-business-respond-online-lead-inquiry",     priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/best-ai-receptionist-companies-local-service",                    priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/best-ai-virtual-receptionist-customer-reviews",                  priority: "0.9", changefreq: "weekly" },
+  { path: "/blog/best-rated-ai-virtual-receptionist-voice-quality",               priority: "0.9", changefreq: "weekly" },
+
   // Blog FAQ / Industry AEO How-To
   { path: "/blog/how-to-set-up-ai-phone-answering-vet-clinic",       priority: "0.8", changefreq: "weekly" },
 
